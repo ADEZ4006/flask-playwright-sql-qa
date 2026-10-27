@@ -1,0 +1,32 @@
+# Registration app in Flask + Automation test with Playwright and SQL
+
+## What it does
+
+The app saves users in SQLite via web; the test registers a user on the page, verifies the row directly
+in the database and cleans up after itself with a DELETE.
+
+The tienda.db database is not included in the repo (it's in .gitignore)-- create it locally first; the
+app and the test use the users table.
+
+## Tech stack
+
+- Python
+- Flask
+- SQLite
+- Playwright
+- Pytest
+
+## How to run
+
+`pip install -r requirements.txt`
+`playwright install`
+`python app.py`
+`pytest`
+
+## Project structure
+
+`app.py` -- the Flask app: registration form and the route that saves users.
+`db/database_helper.py` -- helper with the SQL queries (find and delete a user by email, parameterized).
+`tests/test_user_registration.py` -- the Playwright end-to-end test.
+`conftest.py` -- pytest configuration at the project root.
+`paso1` to `paso5` scripts -- my SQL practice scripts (create the database, queries, orders, summary).
