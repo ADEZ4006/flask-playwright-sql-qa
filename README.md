@@ -15,6 +15,7 @@ app and the test use the users table.
 - SQLite
 - Playwright
 - Pytest
+- Docker
 
 ## How to run
 
@@ -23,6 +24,11 @@ app and the test use the users table.
 `python app.py` -- in one terminal.
 `pytest` -- in a different terminal.
 
+Run it in Docker -- the SQLite database lives in a named volume, so it survives container deletion:
+
+docker build -t flask-sql-app .
+docker volume create tienda-data
+docker run -p 5000:5000 -v tienda-data:/app flask-sql-app
 ## Project structure
 
 `app.py` -- the Flask app: registration form and the route that saves users.
