@@ -20,8 +20,8 @@ app and the test use the users table.
 
 `pip install -r requirements.txt`
 `playwright install`
-`python app.py`
-`pytest`
+`python app.py` -- in one terminal.
+`pytest` -- in a different terminal.
 
 ## Project structure
 
