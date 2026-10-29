@@ -1,5 +1,7 @@
 # Registration app in Flask + Automation test with Playwright and SQL
 
+![Tests](https://github.com/ADEZ4006/flask-playwright-sql-qa/actions/workflows/test.yml/badge.svg)
+
 ## What it does
 
 The app saves users in SQLite via web; the test registers a user on the page, verifies the row directly
