@@ -18,6 +18,7 @@ app and the test use the users table.
 - Playwright
 - Pytest
 - Docker
+- Requests
 
 ## How to run
 
@@ -31,6 +32,19 @@ Run it in Docker -- the SQLite database lives in a named volume, so it survives 
 docker build -t flask-sql-app .
 docker volume create tienda-data
 docker run -p 5000:5000 -v tienda-data:/app flask-sql-app
+
+## API tests
+
+The Flask app's endpoints are also tested directly over HTTP with `requests` and pytest (no browser),
+in `test_api.py`:
+- `GET /` returns 200
+- `POST /registrar` with a name and email returns 200 and the success message; the test deletes the created user 
+afterwards.
+- A registered user is verified in the SQLite database through the `DatabaseHelper` class, then removed and
+confirmed gone.
+- Know defect: `POST /registrar` without an email should return 400 but currently returns 500. The test is marked
+`xfail` until the app validates missing fields.
+
 ## Project structure
 
 `app.py` -- the Flask app: registration form and the route that saves users.
@@ -38,3 +52,4 @@ docker run -p 5000:5000 -v tienda-data:/app flask-sql-app
 `tests/test_user_registration.py` -- the Playwright end-to-end test.
 `conftest.py` -- pytest configuration at the project root.
 `paso1` to `paso5` scripts -- my SQL practice scripts (create the database, queries, orders, summary).
+`test_api.py` -- the API test for the Flask app, with requests and pytest.
